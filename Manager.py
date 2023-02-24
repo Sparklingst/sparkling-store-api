@@ -2,6 +2,7 @@ import json
 import os
 import platform
 import shutil
+import sys
 
 NOW_SYSTEM = platform.system()
 TAG_INFO = "\033[0;37m[INFO]\033[0m"
@@ -32,7 +33,7 @@ def print_all_apps():
     '''
     打印所有APP
     '''
-    cls()
+    print("应用列表")
     apps_dir_path = "apps"
     packages_list = os.listdir(apps_dir_path)
     index = -1
@@ -49,7 +50,6 @@ def print_all_apps():
         # 打印名称
         print(index, "\t", index_content.get("name"), "\t", package_name, "\t",
               index_content.get("platforms"))
-    input("按任意键继续")
 
 
 def update_app_input_package_name():
@@ -59,7 +59,6 @@ def update_app_input_package_name():
     package_name = input("请输入包名，0为返回：")
     if not package_name:
         print("输入错误，请重新输入")
-        input("按任意键继续")
         return False, None
     if package_name == "0":
         return False, "exit"
@@ -107,9 +106,8 @@ def update_app():
     '''
     上传/更新应用
     '''
+    print("上传/更新应用")
     while True:
-        cls()
-        print("上传/更新应用")
         input_package_state, index_content = update_app_input_package_name()
         if input_package_state is False:
             if index_content == "exit":
@@ -137,7 +135,7 @@ def build_api():
             with open(index_path, encoding='utf-8') as index_file:
                 index_content = json.load(index_file)
         except Exception as e:
-            print(TAG_ERROR, package_name, "\t", "打开文件失败", e)
+            print(TAG_ERROR, "打开文件失败", package_name, e)
             continue
         os.makedirs(f"{output_apps_dir_path}/{package_name}")
 
@@ -150,7 +148,7 @@ def build_api():
                         app_platform_file_content = json.load(
                             app_platform_file)
                 except Exception as e:
-                    print(TAG_ERROR, package_name, "\t", "打开文件失败", e)
+                    print(TAG_ERROR, "打开文件失败", package_name, e)
                     continue
                 app_platform_file_content["platforms"] = index_content.get(
                     "platforms")
@@ -164,37 +162,44 @@ def build_api():
             else:
                 shutil.copytree(
                     app_platform_file_path, f"{output_apps_dir_path}/{package_name}/{app_platform_file_name}")
-    input("按任意键继续")
 
 
-while True:
-    cls()
-    print_menu()
-    selection = input("请输入选项：")
-    try:
-        selection = int(selection)
-        if selection is None:
-            print("输入错误，请重新输入")
+if len(sys.argv) > 1:
+    cmd = sys.argv[1]
+    if cmd == "build":
+        build_api()
+    elif cmd == "print":
+        print_all_apps()
+    elif cmd == "update":
+        update_app()
+else:
+    while True:
+        cls()
+        print_menu()
+        selection = input("请输入选项：")
+        try:
+            selection = int(selection)
+            if selection is None:
+                print("输入错误，请重新输入")
+                input("按任意键继续")
+                continue
+        except Exception:
+            print("输入错误，请输入正整数:")
             input("按任意键继续")
             continue
-    except Exception:
-        print("输入错误，请输入正整数:")
-        input("按任意键继续")
-        continue
-    # cls()
-    if selection == 0:
-        break
-    elif selection == 1:
-        print_all_apps()
-    elif selection == 2:
-        update_app()
-    elif selection == 4:
-        build_api()
-    else:
-        print("输入错误，请重新输入")
+        cls()
+        if selection == 0:
+            break
+        elif selection == 1:
+            print_all_apps()
+        elif selection == 2:
+            update_app()
+        elif selection == 4:
+            build_api()
+        else:
+            print("输入错误，请重新输入")
+
         input("按任意键继续")
 
-    # input("按任意键继续")
-
-cls()
-print("再见！")
+    cls()
+    print("再见！")
