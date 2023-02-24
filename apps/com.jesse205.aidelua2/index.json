@@ -1,0 +1,7 @@
+{
+    "name": "Aide Lua Pro",
+    "icon": "icon.svg",
+    "platforms": [
+        "android"
+    ]
+}

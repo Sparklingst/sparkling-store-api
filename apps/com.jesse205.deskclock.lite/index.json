@@ -1,0 +1,9 @@
+{
+    "name": "桌面时钟",
+    "icon": "icon.svg",
+    "summary": "轻量的时钟",
+    "platforms": [
+        "android",
+        "pwa"
+    ]
+}
