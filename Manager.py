@@ -199,7 +199,7 @@ def build_api():
             else:
                 shutil.copytree(
                     app_platform_file_path, f"{output_apps_dir_path}/{app_key}/{app_platform_file_name}")
-        with open(f"{output_apps_dir_path}/sorts.json", "w",
+        with open(f"{output_dir_path}/sorts.json", "w",
                   encoding="utf-8") as app_platform_file:
             app_platform_file.write(
                 json.dumps(sorts_content))
