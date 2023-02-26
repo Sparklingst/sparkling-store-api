@@ -1,23 +1,19 @@
 {
-    "msg": "操作成功",
-    "state": 200,
-    "data": {
-        "banners": {
-            "ratio": 2.3,
-            "data": [
-                {
-                    "image": "https://linguang.top/Banner/banner1.png",
-                    "src": null
-                },
-                {
-                    "image": "https://linguang.top/Banner/banner2.png",
-                    "src": "https://bwcxlg.top/"
-                },
-                {
-                    "image": "https://linguang.top/Banner/banner3.png",
-                    "src": "https://bwcxlg.top/"
-                }
-            ]
-        }
+    "banners": {
+        "ratio": 2.3,
+        "data": [
+            {
+                "image": "https://linguang.top/Banner/banner1.png",
+                "src": null
+            },
+            {
+                "image": "https://linguang.top/Banner/banner2.png",
+                "src": "https://bwcxlg.top/"
+            },
+            {
+                "image": "https://linguang.top/Banner/banner3.png",
+                "src": "https://bwcxlg.top/"
+            }
+        ]
     }
 }

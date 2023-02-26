@@ -5,7 +5,7 @@ import shutil
 import sys
 
 NOW_SYSTEM = platform.system()
-TAG_INFO = "\033[0;37m[INFO]\033[0m"
+TAG_INFO = "[INFO]"
 TAG_ERROR = "\033[0;31m[ERROR]\033[0m"
 
 
@@ -16,7 +16,17 @@ def cls():
     os.system("cls" if NOW_SYSTEM == "Windows" else "clear")
 
 
-def print_menu():
+def get_app_index(key) -> tuple:
+    index_path = f"apps/{key}/index.json"
+    try:
+        with open(index_path, encoding='utf-8') as index_file:
+            index_content = json.load(index_file)
+            return True, index_content
+    except Exception as e:
+        return False, e
+
+
+def print_menu() -> None:
     '''
     打印主菜单
     '''
@@ -37,10 +47,11 @@ def print_all_apps():
     apps_dir_path = "apps"
     packages_list = os.listdir(apps_dir_path)
     index = -1
-    print("序号", "\t", "名称", "\t", "包名", "\t", "平台")
-    for package_name in packages_list:
+    print("序号", "\t", "名称", "\t", "KEY", "\t", "平台")
+
+    for app_key in packages_list:
         index += 1
-        path = os.path.join(apps_dir_path, package_name)
+        path = os.path.join(apps_dir_path, app_key)
         try:
             with open(path + '/index.json', encoding='utf-8') as index_file:
                 index_content = json.load(index_file)
@@ -48,22 +59,22 @@ def print_all_apps():
             print(index, "\t", "\033[0;31m打开文件失败", e, "\033[0m")
             continue
         # 打印名称
-        print(index, "\t", index_content.get("name"), "\t", package_name, "\t",
+        print(index, "\t", index_content.get("name"), "\t", app_key, "\t",
               index_content.get("platforms"))
 
 
-def update_app_input_package_name():
+def update_app_input_app_key():
     '''
-    更新应用的输入包名
+    更新应用的输入 app key
     '''
-    package_name = input("请输入包名，0为返回：")
-    if not package_name:
+    app_key = input("请输入 key，0为返回：")
+    if not app_key:
         print("输入错误，请重新输入")
         return False, None
-    if package_name == "0":
+    if app_key == "0":
         return False, "exit"
 
-    app_cfg_path = "apps/"+package_name
+    app_cfg_path = "apps/"+app_key
     index_path = app_cfg_path + '/index.json'
     index_content = {}
     app_name = None
@@ -82,7 +93,7 @@ def update_app_input_package_name():
         print("平台：", "\t", platforms)
     else:
         print("应用不存在，您正在新建应用")
-
+    index_content["app_key"] = app_key
     app_name = input(f"应用名 ({app_name})：") or app_name
     summary = input(f"应用介绍 ({summary})：") or summary
     icon = input(f"图标 ({icon})：") or icon
@@ -108,7 +119,7 @@ def update_app():
     '''
     print("上传/更新应用")
     while True:
-        input_package_state, index_content = update_app_input_package_name()
+        input_package_state, index_content = update_app_input_app_key()
         if input_package_state is False:
             if index_content == "exit":
                 break
@@ -121,24 +132,50 @@ def update_app():
         app_name = input(f"应用名：({app_name})") or app_name
 
 
+def add_b_to_a(a: dict, b: dict):
+    for key, value in b.items():
+        if key not in a:
+            a[key] = value
+
+
+def add_app_to_sort(sorts_content: dict, app_content: dict):
+    for sort in sorts_content:
+        if "type" in app_content:
+            if sort["type"] == app_content["type"]:
+                sort["apps"].append(app_content)
+                break
+        else:
+            print(TAG_ERROR, app_content.get("app_key"), "应用无分类")
+            break
+
 def build_api():
+    '''
+    构建API
+    '''
     output_dir_path = "build"
     output_apps_dir_path = output_dir_path+"/apps"
     apps_dir_path = "apps"
     shutil.rmtree(output_dir_path)
-    packages_list = os.listdir(apps_dir_path)
-    for package_name in packages_list:
-        print(TAG_INFO, "正在构建", package_name)
-        app_cfg_path = os.path.join(apps_dir_path, package_name)
+    apps_list = os.listdir(apps_dir_path)
+    with open("sorts.json", encoding='utf-8') as index_file:
+        sorts_content = json.load(index_file)
+    for sort in sorts_content:
+        sort["apps"] = sort.get("apps", [])
+
+    for app_key in apps_list:
+        print(TAG_INFO, "正在构建", app_key)
+        app_cfg_path = os.path.join(apps_dir_path, app_key)
         index_path = app_cfg_path + '/index.json'
         try:
             with open(index_path, encoding='utf-8') as index_file:
                 index_content = json.load(index_file)
         except Exception as e:
-            print(TAG_ERROR, "打开文件失败", package_name, e)
+            print(TAG_ERROR, "打开文件失败", app_key, e)
             continue
-        os.makedirs(f"{output_apps_dir_path}/{package_name}")
-
+        index_content["app_key"] = app_key
+        # 创建apps目录
+        os.makedirs(f"{output_apps_dir_path}/{app_key}")
+        add_app_to_sort(sorts_content, index_content)
         for app_platform_file_name in os.listdir(app_cfg_path):
             app_platform_file_path = os.path.join(
                 app_cfg_path, app_platform_file_name)
@@ -148,20 +185,25 @@ def build_api():
                         app_platform_file_content = json.load(
                             app_platform_file)
                 except Exception as e:
-                    print(TAG_ERROR, "打开文件失败", package_name, e)
+                    print(TAG_ERROR, "打开文件失败", app_key, e)
                     continue
-                app_platform_file_content["platforms"] = index_content.get(
-                    "platforms")
-                with open(f"{output_apps_dir_path}/{package_name}/{app_platform_file_name}", "w",
+                add_b_to_a(app_platform_file_content, index_content)
+                with open(f"{output_apps_dir_path}/{app_key}/{app_platform_file_name}", "w",
                           encoding="utf-8") as app_platform_file:
                     app_platform_file.write(
                         json.dumps(app_platform_file_content))
+
             elif os.path.isfile(app_platform_file_path):
                 shutil.copy(
-                    app_platform_file_path, f"{output_apps_dir_path}/{package_name}/{app_platform_file_name}")
+                    app_platform_file_path, f"{output_apps_dir_path}/{app_key}/{app_platform_file_name}")
             else:
                 shutil.copytree(
-                    app_platform_file_path, f"{output_apps_dir_path}/{package_name}/{app_platform_file_name}")
+                    app_platform_file_path, f"{output_apps_dir_path}/{app_key}/{app_platform_file_name}")
+        with open(f"{output_apps_dir_path}/sorts.json", "w",
+                  encoding="utf-8") as app_platform_file:
+            app_platform_file.write(
+                json.dumps(sorts_content))
+    print("构建完成")
 
 
 if len(sys.argv) > 1:
@@ -183,7 +225,7 @@ else:
                 print("输入错误，请重新输入")
                 input("按任意键继续")
                 continue
-        except Exception:
+        except TypeError:
             print("输入错误，请输入正整数:")
             input("按任意键继续")
             continue

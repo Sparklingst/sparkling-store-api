@@ -1,0 +1,22 @@
+[
+    {
+        "name": "实用工具",
+        "type": "tool"
+    },
+    {
+        "name": "学习工作",
+        "type": "learning"
+    },
+    {
+        "name": "休闲娱乐",
+        "type": "enentertainment"
+    },
+    {
+        "name": "工具",
+        "type": "tool"
+    },
+    {
+        "name": "编程开发",
+        "type": "develop"
+    }
+]

@@ -1,6 +1,22 @@
 {
     "version": "1.4",
     "version_code": 5,
+    "summary": "从 Androlua 过渡到 AndroidStudio",
     "package_name": "com.jesse205.aidelua2",
-    "screenshot": []
+    "screenshot": [
+        {
+            "ratio": 1.77,
+            "screenshot": [
+                "screenshots/Screenshot_20221111-205708.jpg"
+            ]
+        },
+        {
+            "ratio": 0.56,
+            "screenshot": [
+                "screenshots/Screenshot_20221111-205702.jpg"
+            ]
+        }
+    ],
+    "target_sdk": 33,
+    "min_sdk": 9
 }

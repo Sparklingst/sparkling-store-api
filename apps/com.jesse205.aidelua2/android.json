@@ -1,13 +1,10 @@
 {
-    "name": "Aide Lua Pro",
-    "version": "5.1.0",
-    "version_code": 51099,
-    "icon": "icon.svg",
+    "version": "5.1.1",
+    "version_code": 51199,
     "summary": "从 Androlua 过渡到 AndroidStudio",
-    "download_url": "https://gitee.com/Jesse205/AideLua/releases/download/v5.1.0/Aide%20Lua%20Pro_v5.1.0_20221221021838_sign.apk",
-    "developer": "Jesse205",
+    "download_url": "https://gitee.com/AideLua/AideLua/releases/download/v5.1.1/Aide%20Lua%20Pro_v5.1.1_20230219155101_sign.apk",
+    "package_name": "com.jesse205.aidelua2",
     "screenshot_ratio": 0.4615384615384615,
-    "package_name":"com.jesse205.aidelua2",
     "screenshot": [
         "screenshots/1.jpg",
         "screenshots/2.jpg",

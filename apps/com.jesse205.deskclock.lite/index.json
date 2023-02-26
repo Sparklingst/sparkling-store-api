@@ -2,6 +2,8 @@
     "name": "桌面时钟",
     "icon": "icon.svg",
     "summary": "轻量的时钟",
+    "source": "https://gitlab.com/Jesse205/Desk-Clock-Lite",
+    "type": "tool",
     "platforms": [
         "android",
         "pwa"

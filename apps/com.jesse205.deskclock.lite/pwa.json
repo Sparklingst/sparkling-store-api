@@ -1,6 +1,9 @@
 {
     "version": "1.4",
     "version_code": 5,
-    "view_url":"https://jesse205.netlify.app/deskclocklite/",
-    "screenshot":[]
+    "view_url": "https://jesse205.netlify.app/deskclocklite/",
+    "screenshot_ratio": 1.77,
+    "screenshot": [
+        "screenshots/Screenshot_20221111-212626.png"
+    ]
 }

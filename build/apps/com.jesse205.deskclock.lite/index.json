@@ -1,1 +1,1 @@
-{"name": "\u684c\u9762\u65f6\u949f", "icon": "icon.svg", "summary": "\u8f7b\u91cf\u7684\u65f6\u949f", "platforms": ["android", "pwa"]}
+{"name": "\u684c\u9762\u65f6\u949f", "icon": "icon.svg", "summary": "\u8f7b\u91cf\u7684\u65f6\u949f", "source": "https://gitlab.com/Jesse205/Desk-Clock-Lite", "type": "tool", "platforms": ["android", "pwa"], "app_key": "com.jesse205.deskclock.lite"}
