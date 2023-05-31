@@ -1,22 +1,22 @@
 [
     {
         "name": "实用工具",
-        "type": "tool"
+        "key": "tool"
     },
     {
         "name": "学习工作",
-        "type": "learning"
+        "key": "learning"
     },
     {
         "name": "休闲娱乐",
-        "type": "enentertainment"
+        "key": "entertainment"
     },
     {
-        "name": "工具",
-        "type": "tool"
+        "name": "便捷生活",
+        "key": "life"
     },
     {
         "name": "编程开发",
-        "type": "develop"
+        "key": "develop"
     }
 ]

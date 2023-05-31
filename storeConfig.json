@@ -1,0 +1,161 @@
+{
+  "name": "商店数据架构配置",
+  "summary": "这个配置文件可以直接管理整个商店的数据架构，如非必要请勿修改",
+  "platforms": [
+    {
+      "name": "Android",
+      "key": "android",
+      "data": [
+        {
+          "name": "应用名称",
+          "key": "name",
+          "summary": "该应用的真实名称。留空为项目名称。",
+          "default": "$project.name",
+          "type": "string",
+          "must": false
+        },
+        {
+          "name": "应用包名",
+          "key": "packageName",
+          "summary": "该应用的包名。留空为项目ID。",
+          "default": "$project.prjId",
+          "type": "string",
+          "must": false
+        },
+        {
+          "name": "图标",
+          "key": "iconUrl",
+          "summary": "该项目的图标。留空为项目图标。",
+          "default": "$project.iconUrl",
+          "type": "string",
+          "must": false
+        },
+        {
+          "name": "*一句话介绍",
+          "summary": "一语惊人",
+          "default": "$project.summary",
+          "key": "summary",
+          "type": "string",
+          "must": false
+        },
+        {
+          "name": "版本列表",
+          "type": "appFileList",
+          "must": true
+        }
+      ]
+    }
+  ],
+  "project": [
+    {
+      "name": "*项目ID",
+      "summary": "该项目的ID，一般情况下为应用的包名，或者软件官网域名的反转。不可重复。",
+      "key": "prjId",
+      "type": "string",
+      "must": true,
+      "same": false
+    },
+    {
+      "name": "*名称",
+      "summary": "该项目的名称",
+      "key": "name",
+      "type": "string",
+      "must": true
+    },
+    {
+      "name": "*图标",
+      "summary": "该项目的图标",
+      "key": "iconUrl",
+      "type": "imageFile",
+      "must": true
+    },
+    {
+      "name": "*一句话介绍",
+      "summary": "一语惊人",
+      "key": "summary",
+      "type": "string",
+      "must": true
+    },
+    {
+      "name": "*平台",
+      "summary": "平台",
+      "key": "platforms",
+      "type": "platforms",
+      "must": true
+    },
+    {
+      "name": "开源仓库",
+      "summary": "软件的开源地址",
+      "key": "source",
+      "type": "string",
+      "must": false
+    },
+    {
+      "name": "官网",
+      "summary": "软件的官网",
+      "key": "website",
+      "type": "string",
+      "must": false
+    },
+    {
+      "name": "截图",
+      "summary": "如果是跨平台应用，可以在这里放置截图",
+      "key": "screenshots",
+      "type": "screenshots",
+      "must": false
+    },
+    {
+      "name": "框架",
+      "summary": "软件的框架信息",
+      "key": "frame",
+      "type": "string",
+      "list": [
+        "原生",
+        "混合",
+        "其他"
+      ],
+      "default": "其他",
+      "must": true
+    }
+  ],
+  "basicInfoList": [
+    "name",
+    "prjId",
+    "iconUrl",
+    "summary",
+    "platforms"
+  ],
+  "tagsCfg": [
+    {
+      "name": "模块类",
+      "key": "module",
+      "tags": [
+        "xposed",
+        "shizuku",
+        "dhizuku"
+      ]
+    },
+    {
+      "name": "UI类",
+      "key": "ui",
+      "tags": [
+        "Material",
+        "Fluent",
+        "扁平风格"
+      ]
+    },
+    {
+      "name": "详细分类",
+      "key": "middleSorts",
+      "tags": [
+        "购物",
+        "游戏",
+        "编程",
+        "影音",
+        "教育",
+        "汽车",
+        "儿童"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "download": [
+    {
+      "fileName":"Aide Lua Pro_v5.1.1_20230219155101_sign.apk",
+      "versionCode": 51199,
+      "versionName": "5.1.1",
+      "url": "https://gitee.com/AideLua/AideLua/releases/download/v5.1.1/Aide%20Lua%20Pro_v5.1.1_20230219155101_sign.apk",
+      "minSdk": 21,
+      "targetSdk": 29
+    }
+  ],
+  "packageName": "com.jesse205.androlua.androidX.material3",
+  "screenshotRatio": 0.4615384615384615,
+  "screenshots": [
+    "screenshots/1.jpg",
+    "screenshots/2.jpg",
+    "screenshots/3.jpg",
+    "screenshots/1.jpg",
+    "screenshots/2.jpg",
+    "screenshots/3.jpg",
+    "screenshots/1.jpg",
+    "screenshots/2.jpg",
+    "screenshots/3.jpg"
+  ],
+  "introduction": "AndroLuaX 是一款反编译 AndroLua+，为 AndroLua+ 添加 AndroidX 的 AndroLua+ 衍生产品",
+  "targetSdk": 29,
+  "minSdk": 21
+}

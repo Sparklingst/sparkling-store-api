@@ -1,0 +1,19 @@
+{
+  "download": [
+    {
+      "fileName": "DeskClockLite_v1.5.apk",
+      "versionCode": 1599,
+      "versionName": "1.5",
+      "url": "https://github.com/Jesse205/Desk-Clock-Lite/releases/download/v1.5/DeskClockLite_v1.5.apk",
+      "minSdk": 8,
+      "targetSdk": 33
+    }
+  ],
+  "packageName": "com.jesse205.deskclock.lite",
+  "screenshots": [
+    "screenshots/Screenshot_20221111-205702.png",
+    "screenshots/Screenshot_20221111-205708.png"
+  ],
+  "targetSdk": 33,
+  "minSdk": 8
+}

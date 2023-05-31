@@ -1,0 +1,13 @@
+{
+  "name": "AndroLuaX",
+  "iconUrl": "icon.svg",
+  "summary": "添加了 AndroidX 的 AndroLua+ ",
+  "source": "https://gitlab.com/Jesse205/androluax/",
+  "developer": "Jesse205",
+  "type": "develop",
+  "platforms": {
+    "android": [
+      "material3"
+    ]
+  }
+}

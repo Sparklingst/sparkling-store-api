@@ -1,0 +1,14 @@
+{
+  "name": "Aide Lua Pro",
+  "iconUrl": "icon.svg",
+  "summary": "从 Androlua 过渡到 AndroidStudio",
+  "website": "https://aidelua.netlify.app/",
+  "source": "https://gitee.com/AideLua/AideLua",
+  "developer": "Jesse205",
+  "type": "develop",
+  "platforms": {
+    "android": [
+      "pro"
+    ]
+  }
+}
