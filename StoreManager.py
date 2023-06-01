@@ -179,7 +179,7 @@ def merge_url(url: str, base: str) -> str:
     return url
 
 
-def merge_table(src: dict | list, dst: dict | list) -> dict | list:
+def merge_table(src, dst):# python3.8不支持类型标注
     if type(dst) == list and type(src) == list:
         for index in range(len(src)):
             value = src[index]
