@@ -45,3 +45,5 @@ else:
     # cls()
     # print("再见！")
     # main_ui()
+
+exit(0)
