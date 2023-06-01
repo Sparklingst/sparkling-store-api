@@ -179,7 +179,7 @@ def merge_url(url: str, base: str) -> str:
     return url
 
 
-def merge_table(src, dst):# python3.8不支持类型标注
+def merge_table(src, dst):  # python3.8不支持类型标注
     if type(dst) == list and type(src) == list:
         for index in range(len(src)):
             value = src[index]
@@ -202,7 +202,7 @@ def save_project_info():
     ...
 
 
-def get_projects() -> list[str]:
+def get_projects() -> list:
     """
     获取所有项目ID
     """
@@ -278,7 +278,7 @@ def pack_data(data):
     }
 
 
-def build_apps(project_info_list: list[ProjectInfo]):
+def build_apps(project_info_list: list):
     project_info_list = project_info_list.copy()
     random.shuffle(project_info_list)
     store_config = get_store_config()
