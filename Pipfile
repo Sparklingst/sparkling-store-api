@@ -8,5 +8,5 @@ name = "pip_conf_index_global"
 [dev-packages]
 
 [requires]
-python_version = "3.11"
-python_full_version = "3.11.2"
+#python_version = "3.11"
+#python_full_version = "3.11.2"
